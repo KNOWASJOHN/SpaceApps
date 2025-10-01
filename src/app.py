@@ -55,7 +55,7 @@ def summarize_entire_text(text):
 @st.cache_data
 def load_data():
     try:
-        df = pd.read_csv('data/SB_publication_PMC.csv')
+        df = pd.read_csv('./data/SB_publication_PMC.csv')
         if df.empty:
             return pd.DataFrame()
     except Exception as e:
@@ -331,17 +331,24 @@ def main():
         url_input = st.text_input(
             "Enter Article URL:",
             value="https://pmc.ncbi.nlm.nih.gov/articles/PMC10772081/",
-            placeholder="https://pmc.ncbi.nlm.nih.gov/articles/..."
+            placeholder="https://pmc.ncbi.nlm.nih.gov/articles/...",
+            key="url_input"
         )
         
-        # Summarize button with primary styling
-        if st.button("🚀 Summarize Paper", type="primary"):
-            if url_input:
-                with st.spinner("📝 Generating summary... This may take a moment."):
-                    summary = summarize_from_url(url_input)
-                    st.markdown("#### 📋 Final Summary")
-                    st.info(summary)
-            else:
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            # Summarize button with primary styling
+            if st.button("🚀 Summarize Paper", type="primary"):
+                if url_input:
+                    if url_input not in st.session_state.summary_cache:
+                        with st.spinner("📝 Generating summary..."):
+                            summary = summarize_from_url(url_input)
+                            st.session_state.summary_cache[url_input] = summary
+
+        with col2:
+            if url_input in st.session_state.summary_cache:
+                st.info(st.session_state.summary_cache[url_input])
+            elif not url_input:
                 st.warning("⚠️ Please enter a URL to summarize")
 
 if __name__ == "__main__":
