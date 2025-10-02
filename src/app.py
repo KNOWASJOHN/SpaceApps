@@ -8,7 +8,7 @@ import textwrap
 # Page configuration MUST be the first Streamlit command
 st.set_page_config(
     page_title="NASA Bioscience Explorer",
-    page_icon="https://github.com/KNOWASJOHN/SpaceApps/blob/main/kryonix.jpg?raw=true",
+    page_icon="https://github.com/KNOWASJOHN/SpaceApps/blob/main/kryonix.jpg",
     layout="wide",
     initial_sidebar_state="collapsed"  # Hide the sidebar by default
 )
