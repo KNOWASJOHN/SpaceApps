@@ -2,7 +2,7 @@
 
 A Streamlit web application for exploring and analyzing NASA life sciences publications with AI-powered summarization capabilities.
 
-![NASA Bioscience Explorer](https://github.com/KNOWASJOHN/SpaceApps/blob/main/kryonix.jpg?raw=true)
+![NASA Bioscience Explorer](https://github.com/KNOWASJOHN/SpaceApps/blob/main/dashboard.png?raw=true)
 
 ## 📋 Overview
 
